@@ -1,0 +1,399 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AKiTM Engineering Day Exhibition</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================
+         ANIMATED BACKGROUND
+    ====================================== -->
+
+    <div class="background">
+
+        <div class="orb orb1"></div>
+        <div class="orb orb2"></div>
+        <div class="orb orb3"></div>
+
+    </div>
+
+
+    <!-- =====================================
+         WELCOME SCREEN
+    ====================================== -->
+
+    <section id="welcomeScreen" class="screen">
+
+        <div class="card welcome-card">
+
+
+            <!-- TOP LOGO -->
+
+            <div class="logo">
+
+                <span>A</span>
+                <span>K</span>
+                <span>i</span>
+                <span>T</span>
+                <span>M</span>
+
+            </div>
+
+
+            <div class="line"></div>
+
+
+            <!-- EVENT TITLE -->
+
+            <p class="small-title">
+                ENGINEERING DAY
+            </p>
+
+            <h1 class="main-title">
+                EXHIBITION
+            </h1>
+
+
+            <!-- WELCOME -->
+
+            <h2 class="welcome-text">
+                Welcome! 👋
+            </h2>
+
+
+            <p class="intro">
+
+                We are delighted to have you here.
+
+                <br>
+
+                Enter your name and explore our
+                Engineering Day Exhibition.
+
+            </p>
+
+
+            <!-- NAME INPUT -->
+
+            <div class="input-area">
+
+                <input
+                    type="text"
+                    id="nameInput"
+                    placeholder="Enter your name..."
+                    autocomplete="off"
+                >
+
+                <button
+                    id="enterButton"
+                    onclick="enterEvent()">
+
+                    <span>ENTER</span>
+
+                    <span class="arrow">
+                        →
+                    </span>
+
+                </button>
+
+            </div>
+
+
+            <!-- MADE BY -->
+
+            <div class="creator">
+
+                Made with ❤️ by
+
+                <strong>
+                    Amit & Smruti
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================
+         VISITOR DASHBOARD
+    ====================================== -->
+
+    <section
+        id="dashboard"
+        class="screen dashboard-screen">
+
+
+        <div class="card dashboard-card">
+
+
+            <!-- EXIT BUTTON -->
+
+            <div class="exit-area">
+
+                <span>
+                    EXIT
+                </span>
+
+                <button
+                    class="exit-switch"
+                    onclick="exitDashboard()">
+
+                    <span></span>
+
+                </button>
+
+            </div>
+
+
+            <!-- LOGO -->
+
+            <div class="dashboard-logo">
+                AKiTM
+            </div>
+
+
+            <div class="line"></div>
+
+
+            <!-- WELCOME -->
+
+            <p class="dashboard-small">
+                WELCOME TO
+            </p>
+
+
+            <h1 class="visitor-title">
+                ENGINEERING DAY
+            </h1>
+
+
+            <!-- VISITOR NAME -->
+
+            <p class="visitor-label">
+                Dear Visitor
+            </p>
+
+
+            <h2
+                id="visitorName"
+                class="visitor-name">
+
+                Visitor
+
+            </h2>
+
+
+            <!-- MESSAGE -->
+
+            <p class="thank-message">
+
+                🎉 Thank you for coming! 🎉
+
+            </p>
+
+
+            <p class="experience">
+
+                We hope you enjoy our exhibition
+                and have an amazing experience.
+
+            </p>
+
+
+            <!-- TAGS -->
+
+            <div class="tags">
+
+                <span>INNOVATE</span>
+
+                <span>CREATE</span>
+
+                <span>INSPIRE</span>
+
+            </div>
+
+
+            <!-- FOOTER -->
+
+            <div class="creator dashboard-creator">
+
+                Made with ❤️ by
+
+                <strong>
+                    Amit & Smruti
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================
+         JAVASCRIPT
+    ====================================== -->
+
+    <script>
+
+
+        const welcomeScreen =
+            document.getElementById("welcomeScreen");
+
+        const dashboard =
+            document.getElementById("dashboard");
+
+        const nameInput =
+            document.getElementById("nameInput");
+
+        const visitorName =
+            document.getElementById("visitorName");
+
+
+        /* =================================
+           ENTER EVENT
+        ================================= */
+
+        function enterEvent() {
+
+            const name =
+                nameInput.value.trim();
+
+
+            if (name === "") {
+
+                nameInput.classList.add("error");
+
+                nameInput.placeholder =
+                    "Please enter your name!";
+
+                setTimeout(() => {
+
+                    nameInput.classList.remove("error");
+
+                    nameInput.placeholder =
+                        "Enter your name...";
+
+                }, 2000);
+
+                return;
+            }
+
+
+            /* Show visitor name */
+
+            visitorName.textContent = name;
+
+
+            /* Hide welcome */
+
+            welcomeScreen.classList.add("hide");
+
+
+            setTimeout(() => {
+
+                welcomeScreen.style.display =
+                    "none";
+
+                dashboard.style.display =
+                    "flex";
+
+                setTimeout(() => {
+
+                    dashboard.classList.add("show");
+
+                }, 50);
+
+            }, 500);
+
+        }
+
+
+
+        /* =================================
+           EXIT DASHBOARD
+        ================================= */
+
+        function exitDashboard() {
+
+            dashboard.classList.remove("show");
+
+
+            setTimeout(() => {
+
+                dashboard.style.display =
+                    "none";
+
+                welcomeScreen.style.display =
+                    "flex";
+
+                nameInput.value = "";
+
+                setTimeout(() => {
+
+                    welcomeScreen.classList.remove(
+                        "hide"
+                    );
+
+                    nameInput.focus();
+
+                }, 50);
+
+            }, 500);
+
+        }
+
+
+
+        /* =================================
+           ENTER KEY
+        ================================= */
+
+        nameInput.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (event.key === "Enter") {
+
+                    enterEvent();
+
+                }
+
+            }
+        );
+
+
+        /* =================================
+           START
+        ================================= */
+
+        window.onload = function() {
+
+            nameInput.focus();
+
+        };
+
+    </script>
+
+
+</body>
+
+</html>
